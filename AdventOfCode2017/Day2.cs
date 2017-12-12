@@ -36,10 +36,10 @@ namespace AdventOfCode2017
                 new[] {2, 4, 6, 8}
             };
 
-            Assert.AreEqual(GetSmallest(exampleMatrix[0]), 1);
-            Assert.AreEqual(GetLargest(exampleMatrix[0]), 9);
-            Assert.AreEqual(GetSmallestToLargestDifference(exampleMatrix[0]), 8);
-            Assert.AreEqual(GetCorruptionCheckSum(exampleMatrix), 18);
+            Assert.AreEqual(1, GetSmallest(exampleMatrix[0]));
+            Assert.AreEqual(9, GetLargest(exampleMatrix[0]));
+            Assert.AreEqual(8, GetSmallestToLargestDifference(exampleMatrix[0]));
+            Assert.AreEqual(18, GetCorruptionCheckSum(exampleMatrix));
             
             Console.WriteLine(GetCorruptionCheckSum(Input));
         }
@@ -90,9 +90,9 @@ namespace AdventOfCode2017
             };
             
             Assert.IsTrue(AreEquallyDivisible(2, 8));
-            Assert.AreEqual(EqualDivision(2, 8), 4);
-            Assert.AreEqual(FindEqualDivision(exampleMatrix[0]), 4);
-            Assert.AreEqual(GetCorruptionCheckSumEvenDividers(exampleMatrix), 9);
+            Assert.AreEqual(4, EqualDivision(2, 8));
+            Assert.AreEqual(4, FindEqualDivision(exampleMatrix[0]));
+            Assert.AreEqual(9, GetCorruptionCheckSumEvenDividers(exampleMatrix));
 
             Console.WriteLine(GetCorruptionCheckSumEvenDividers(Input));
         }

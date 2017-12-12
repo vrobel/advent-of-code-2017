@@ -13,10 +13,10 @@ namespace AdventOfCode2017
         [Test]
         public void TestStepSum()
         {
-            Assert.AreEqual(GetStepSum("1122"), 3);
-            Assert.AreEqual(GetStepSum("1111"), 4);
-            Assert.AreEqual(GetStepSum("1234"), 0);
-            Assert.AreEqual(GetStepSum("91212129"), 9);
+            Assert.AreEqual(3, GetStepSum("1122"));
+            Assert.AreEqual(4, GetStepSum("1111"));
+            Assert.AreEqual(0, GetStepSum("1234"));
+            Assert.AreEqual(9, GetStepSum("91212129"));
 
             Console.WriteLine(GetStepSum(Input));
         }
@@ -41,10 +41,10 @@ namespace AdventOfCode2017
         [Test]
         public void TestHalfwaySum()
         {
-            Assert.AreEqual(GetHalfwaySum("1212"),6);
-            Assert.AreEqual(GetHalfwaySum("12131415"),4);
-            Assert.AreEqual(GetHalfwaySum("123123"),12);
-            Assert.AreEqual(GetHalfwaySum("123425"),4);
+            Assert.AreEqual(6, GetHalfwaySum("1212"));
+            Assert.AreEqual(4, GetHalfwaySum("12131415"));
+            Assert.AreEqual(12, GetHalfwaySum("123123"));
+            Assert.AreEqual(4, GetHalfwaySum("123425"));
             
             Console.WriteLine(GetHalfwaySum(Input));
         }
