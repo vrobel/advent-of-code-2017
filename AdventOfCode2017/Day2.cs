@@ -78,5 +78,58 @@ namespace AdventOfCode2017
             }
             return max;
         }
+
+        [Test]
+        public void TestCorruptionCheckSumEvenDividers()
+        {
+            var exampleMatrix = new[]
+            {
+                new[] {5, 9, 2, 8},
+                new[] {9, 4, 7, 3},
+                new[] {3, 8, 6, 5}
+            };
+            
+            Assert.IsTrue(AreEquallyDivisible(2, 8));
+            Assert.AreEqual(EqualDivision(2, 8), 4);
+            Assert.AreEqual(FindEqualDivision(exampleMatrix[0]), 4);
+            Assert.AreEqual(GetCorruptionCheckSumEvenDividers(exampleMatrix), 9);
+
+            Console.WriteLine(GetCorruptionCheckSumEvenDividers(Input));
+        }
+
+        private int GetCorruptionCheckSumEvenDividers(int[][] input)
+        {
+            var sum = 0;
+            foreach (var row in input)
+            {
+                sum += FindEqualDivision(row);
+            }
+            return sum;
+        }
+
+        private int FindEqualDivision(int[] input)
+        {
+            for (int i = 0; i < input.Length - 1; i++)
+            {
+                for (int j = i + 1; j < input.Length; j++)
+                {
+                    if (AreEquallyDivisible(input[i], input[j]))
+                    {
+                        return EqualDivision(input[i], input[j]);
+                    }
+                }
+            }
+            return -1;
+        }
+
+        private int EqualDivision(int a, int b)
+        {
+            return a > b ? a / b : b / a;
+        }
+
+        private bool AreEquallyDivisible(int a, int b)
+        {
+            return a > b ? a % b == 0 : b % a == 0;
+        }
     }
 }
