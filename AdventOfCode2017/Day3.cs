@@ -14,6 +14,7 @@ namespace AdventOfCode2017
             Assert.AreEqual(0, GetMemoryPathDistance(1));
             Assert.AreEqual(3, GetMemoryPathDistance(12));
             Assert.AreEqual(2, GetMemoryPathDistance(23));
+            Assert.AreEqual(3, GetMemoryPathDistance(14));
             Assert.AreEqual(31, GetMemoryPathDistance(1024));
 
             Console.WriteLine(GetMemoryPathDistance(Input));
@@ -60,7 +61,9 @@ namespace AdventOfCode2017
             var previousSquareLastNumber = LastFieldNumber(squareNumber - 1);
             
             //squareNumber is a minimum number of moves to get to the center.
-            var centerPositionOffset = (input + squareNumber - previousSquareLastNumber) % (2 * squareNumber);
+            var distanceToNextCenterPosition = 2 * squareNumber;
+            var lastCenterPosition = (input + squareNumber - previousSquareLastNumber) % distanceToNextCenterPosition;
+            var centerPositionOffset = Math.Min(lastCenterPosition, distanceToNextCenterPosition - lastCenterPosition);
             return squareNumber + centerPositionOffset;
         }
     }
