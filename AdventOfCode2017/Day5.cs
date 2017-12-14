@@ -31,17 +31,40 @@ namespace AdventOfCode2017
             Console.WriteLine(CountMazeSteps(_input));
         }
 
-        private int CountMazeSteps(int[] input)
+        [Test]
+        public void TestMaze2()
+        {
+            var exampleInput = new[] {0, 3, 0, 1, -3};
+            Assert.AreEqual(10, CountMaze2Steps(exampleInput));
+
+            Console.WriteLine(CountMaze2Steps(_input));
+        }
+
+        private int CountMaze2Steps(int[] input)
         {
             var inputSize = input.Length;
-            var visitedOffset = new uint[inputSize];
             var i = 0;
             var iterations = 0;
             while (i >= 0 && i < inputSize)
             {
-                var offset = (int) visitedOffset[i];
-                visitedOffset[i]++;
-                i += input[i] + offset;
+                var value = input[i];
+                input[i] += value >= 3 ? -1 : 1;
+                i += value;
+                iterations++;
+            }
+            return iterations;
+        }
+
+        private int CountMazeSteps(int[] input)
+        {
+            var inputSize = input.Length;
+            var i = 0;
+            var iterations = 0;
+            while (i >= 0 && i < inputSize)
+            {
+                var value = input[i];
+                input[i]++;
+                i += value;
                 iterations++;
             }
             return iterations;
