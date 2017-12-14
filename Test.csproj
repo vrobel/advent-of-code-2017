@@ -45,7 +45,13 @@
     <Compile Include="AdventOfCode2017\Day1.cs" />
     <Compile Include="AdventOfCode2017\Day2.cs" />
     <Compile Include="AdventOfCode2017\Day3.cs" />
+    <Compile Include="AdventOfCode2017\Day4.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="AdventOfCode2017\Resources\day3_input.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
