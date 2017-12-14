@@ -14,7 +14,7 @@ namespace AdventOfCode2017
         public void LoadInput()
         {
             var path = Path.Combine(TestContext.CurrentContext.TestDirectory,
-                "AdventOfCode2017/Resources/day3_input.txt");
+                "AdventOfCode2017/Resources/day4_input.txt");
             _input = File.ReadAllLines(path);
             Console.Write(_input);
         }
