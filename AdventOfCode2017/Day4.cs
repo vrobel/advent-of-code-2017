@@ -46,44 +46,20 @@ namespace AdventOfCode2017
             var strings = passphrase.Split(' ');
             for (int i = 0; i < strings.Length; i++)
             {
-                var word = strings[i];
-                var charArray = word.ToCharArray();
-                Array.Sort(charArray);
-                var sortedWord = new string(charArray);
-                strings[i] = sortedWord;
+                strings[i] = string.Concat(strings[i].OrderBy(c => c));
             }
-            
-            for (int i = 0; i < strings.Length - 1; i++)
-            {
-                var w1 = strings[i];
-                for (int j = i + 1; j < strings.Length; j++)
-                {
-                    var w2 = strings[j];
-                    if (string.Equals(w1, w2))
-                    {
-                        return false;
-                    }
-                }
-            }
-            return true;
+
+            return IsPassphraseValid(strings);
         }
 
         private bool IsPassphraseValid(string passphrase)
         {
-            var strings = passphrase.Split(' ');
-            for (int i = 0; i < strings.Length - 1; i++)
-            {
-                var w1 = strings[i];
-                for (int j = i + 1; j < strings.Length; j++)
-                {
-                    var w2 = strings[j];
-                    if (string.Equals(w1, w2))
-                    {
-                        return false;
-                    }
-                }
-            }
-            return true;
+            return IsPassphraseValid(passphrase.Split(' '));
+        }
+
+        private static bool IsPassphraseValid(string[] strings)
+        {
+            return strings.Distinct().Count() == strings.Length;
         }
     }
 }
