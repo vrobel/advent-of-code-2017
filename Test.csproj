@@ -47,6 +47,7 @@
     <Compile Include="AdventOfCode2017\Day3.cs" />
     <Compile Include="AdventOfCode2017\Day4.cs" />
     <Compile Include="AdventOfCode2017\Day5.cs" />
+    <Compile Include="AdventOfCode2017\Day15.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
