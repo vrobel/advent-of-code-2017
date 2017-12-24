@@ -40,14 +40,14 @@ namespace AdventOfCode2017
         [Test]
         public void TestExamplePerkyGenerator()
         {
-            var generator = new PerkyGenerator(ExampleGenA, GenAMultiplier, 4);
+            var generator = new PerkyGeneratorDecorator(new Generator(ExampleGenA, GenAMultiplier), 4);
             Assert.AreEqual(1352636452, generator.NextValue());
             Assert.AreEqual(1992081072, generator.NextValue());
             Assert.AreEqual(530830436, generator.NextValue());
             Assert.AreEqual(1980017072, generator.NextValue());
             Assert.AreEqual(740335192, generator.NextValue());
             
-            generator = new PerkyGenerator(ExampleGenB, GenBMultiplier, 8);
+            generator = new PerkyGeneratorDecorator(new Generator(ExampleGenB, GenBMultiplier), 8);
             Assert.AreEqual(1233683848, generator.NextValue());
             Assert.AreEqual(862516352, generator.NextValue());
             Assert.AreEqual(1159784568, generator.NextValue());
@@ -88,8 +88,8 @@ namespace AdventOfCode2017
         [Test]
         public void Test40MillionPerkyIterations()
         {
-            var genA = new PerkyGenerator(InputGenA, GenAMultiplier, 4);
-            var genB = new PerkyGenerator(InputGenB, GenBMultiplier, 8);
+            var genA = new PerkyGeneratorDecorator(new Generator(InputGenA, GenAMultiplier), 4);
+            var genB = new PerkyGeneratorDecorator(new Generator(InputGenB, GenBMultiplier), 8);
             var count = CountMatchesOverIteration(genA, genB, PerkyIterations);
 
             Console.WriteLine($"Generator results matched {count} times");
@@ -136,26 +136,25 @@ namespace AdventOfCode2017
             }
         }
 
-        private class PerkyGenerator : IGenerator
+        private class PerkyGeneratorDecorator : IGenerator
         {
-            private long _current;
-            private readonly int _multiplier;
             private readonly int _acceptedDivider;
+            private readonly IGenerator _gen;
 
-            public PerkyGenerator(int init, int multiplier, int acceptedDivider)
+            public PerkyGeneratorDecorator(IGenerator gen, int acceptedDivider)
             {
-                _current = init;
-                _multiplier = multiplier;
+                _gen = gen;
                 _acceptedDivider = acceptedDivider;
             }
 
             public int NextValue()
             {
+                int current;
                 do
                 {
-                    _current = _current * _multiplier % int.MaxValue;
-                } while (_current % _acceptedDivider != 0);
-                return (int) _current;
+                    current = _gen.NextValue();
+                } while (current % _acceptedDivider != 0);
+                return current;
             }
         }
     }
